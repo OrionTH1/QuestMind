@@ -10,32 +10,6 @@ interface InputTypes {
 }
 
 export function Questions() {
-  const result = {
-    question:
-      "O Renascimento foi um movimento cultural e artístico que marcou o fim da Idade Média e o início da Idade Moderna.",
-    option: {
-      A: {
-        text: "O Renascimento valorizava a razão, a ciência e a individualidade, rompendo com a visão teocêntrica predominante na Idade Média.",
-        isCorrect: false,
-      },
-      B: {
-        text: "O Renascimento valorizava a razão, a ciência e a individualidade, rompendo com a visão teocêntrica predominante na Idade Média.",
-        isCorrect: false,
-      },
-      C: {
-        text: "O Renascimento valorizava a razão, a ciência e a individualidade, rompendo com a visão teocêntrica predominante na Idade Média.",
-        isCorrect: true,
-      },
-      D: {
-        text: "O Renascimento valorizava a razão, a ciência e a individualidade, rompendo com a visão teocêntrica predominante na Idade Média.",
-        isCorrect: false,
-      },
-      E: {
-        text: "O Renascimento valorizava a razão, a ciência e a individualidade, rompendo com a visão teocêntrica predominante na Idade Média.",
-        isCorrect: false,
-      },
-    },
-  };
   const {
     register,
     handleSubmit,
