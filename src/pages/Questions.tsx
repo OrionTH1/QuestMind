@@ -44,7 +44,7 @@ export function Questions() {
     <div className="min-h-svh flex flex-col justify-center items-center py-16">
       <div
         className={twMerge(
-          "border rounded-[20px] max-w-[800px] py-11 px-16",
+          "border rounded-[20px] w-[900px] py-11 px-16",
           !isFormSubmitted
             ? "border-cyan-400"
             : isAnswerCorrect
