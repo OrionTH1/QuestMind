@@ -4,11 +4,18 @@ import { twMerge } from "tailwind-merge";
 interface OptionProps {
   option: "A" | "B" | "C" | "D" | "E";
   text: string;
+  explicationText: string;
   register: UseFormRegisterReturn;
   status: boolean | "waiting";
 }
 
-export function Option({ option, text, register, status }: OptionProps) {
+export function Option({
+  option,
+  text,
+  explicationText,
+  register,
+  status,
+}: OptionProps) {
   return (
     <div className="flex flex-col gap-y-4">
       <label
@@ -20,6 +27,7 @@ export function Option({ option, text, register, status }: OptionProps) {
         <input
           type="radio"
           value={option}
+          required
           disabled={status !== "waiting" && true}
           className={twMerge(
             "appearance-none h-[40px] outline-2  p-5 rounded-[5px] transition-all duration-150 ease-in",
@@ -52,10 +60,7 @@ export function Option({ option, text, register, status }: OptionProps) {
             : "bg-red"
         )}
       >
-        <p className="text-sm">
-          O Renascimento valorizava a razão, a ciência e a individualidade,
-          rompendo com a visão teocêntrica predominante na Idade Média.
-        </p>
+        <p className="text-sm">{explicationText}</p>
       </div>
     </div>
   );
