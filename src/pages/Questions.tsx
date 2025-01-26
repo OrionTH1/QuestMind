@@ -1,9 +1,10 @@
 import { Option } from "../components/Option";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Button } from "../components/Button";
+import { useStore } from "../store";
 
 interface InputTypes {
   option: "A" | "B" | "C" | "D" | "E";
@@ -18,22 +19,37 @@ export function Questions() {
   } = useForm<InputTypes>();
   const isFormSubmitted = formState.isSubmitted;
   const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean>(false);
-  const questionsCount = useRef(1);
+  const {
+    questions,
+    questionCount,
+    increaseCorrectCount,
+    increaseQuestionCount,
+    resetStore: resetCounts,
+  } = useStore();
+  const actualQuestion = questions[questionCount - 1];
   const navigate = useNavigate();
 
+  useEffect(() => {
+    resetCounts();
+  }, [resetCounts]);
+
   const handleNextQuestionClick = () => {
-    if (questionsCount.current === 5) navigate("/questions/123/finished");
+    if (questionCount === 5) {
+      navigate("/questions/123/finished");
+      return;
+    }
 
     setIsAnswerCorrect(false);
-    questionsCount.current++;
+    increaseQuestionCount();
     resetForm();
   };
 
   const handleFormSubmit: SubmitHandler<InputTypes> = (data) => {
     if (!data.option) return;
 
-    if (result.option[data.option].isCorrect) {
+    if (actualQuestion.option[data.option].isCorrect) {
       setIsAnswerCorrect(true);
+      increaseCorrectCount();
       return;
     }
 
@@ -52,42 +68,69 @@ export function Questions() {
             : "border-red"
         )}
       >
-        <p className="mb-4 text-sm ">Questão {questionsCount.current}/5</p>
-        <h1 className="text-[20px] font-medium mb-9">{result.question}</h1>
+        <p className="mb-4 text-sm ">Questão {questionCount}/5</p>
+        <h1 className="text-[20px] font-medium mb-9">
+          {actualQuestion.question}
+        </h1>
 
         <div>
           <form className="relative" onSubmit={handleSubmit(handleFormSubmit)}>
             <div className="flex flex-col gap-y-6 mb-16">
               <Option
                 option={"A"}
-                text={result.option.A.text}
-                status={isFormSubmitted ? result.option.A.isCorrect : "waiting"}
+                text={actualQuestion.option.A.text}
+                explicationText={actualQuestion.option.A.explication}
+                status={
+                  isFormSubmitted
+                    ? actualQuestion.option.A.isCorrect
+                    : "waiting"
+                }
                 register={register("option")}
               />
               <Option
                 option={"B"}
-                text={result.option.B.text}
+                text={actualQuestion.option.B.text}
+                explicationText={actualQuestion.option.B.explication}
                 register={register("option")}
-                status={isFormSubmitted ? result.option.B.isCorrect : "waiting"}
+                status={
+                  isFormSubmitted
+                    ? actualQuestion.option.B.isCorrect
+                    : "waiting"
+                }
               />
               <Option
                 option={"C"}
-                text={result.option.C.text}
+                text={actualQuestion.option.C.text}
+                explicationText={actualQuestion.option.C.explication}
                 register={register("option")}
-                status={isFormSubmitted ? result.option.C.isCorrect : "waiting"}
+                status={
+                  isFormSubmitted
+                    ? actualQuestion.option.C.isCorrect
+                    : "waiting"
+                }
               />
               <Option
                 option={"D"}
-                text={result.option.D.text}
+                text={actualQuestion.option.D.text}
+                explicationText={actualQuestion.option.D.explication}
                 register={register("option")}
-                status={isFormSubmitted ? result.option.D.isCorrect : "waiting"}
+                status={
+                  isFormSubmitted
+                    ? actualQuestion.option.D.isCorrect
+                    : "waiting"
+                }
               />
 
               <Option
                 option={"E"}
-                text={result.option.E.text}
+                text={actualQuestion.option.E.text}
+                explicationText={actualQuestion.option.E.explication}
                 register={register("option")}
-                status={isFormSubmitted ? result.option.E.isCorrect : "waiting"}
+                status={
+                  isFormSubmitted
+                    ? actualQuestion.option.E.isCorrect
+                    : "waiting"
+                }
               />
             </div>
 
@@ -104,16 +147,7 @@ export function Questions() {
               <Button
                 width="10rem"
                 height="3rem"
-                text="Pular questão"
-                variant="outline"
-                type="button"
-                isHidden={isFormSubmitted}
-              />
-
-              <Button
-                width="10rem"
-                height="3rem"
-                text={questionsCount.current === 5 ? "Finalizar" : "Próximo"}
+                text={questionCount === 5 ? "Finalizar" : "Próximo"}
                 variant="fill"
                 type="button"
                 onClick={handleNextQuestionClick}
