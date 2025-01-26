@@ -2,6 +2,8 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { GoGear } from "react-icons/go";
 import { useNavigate } from "react-router";
+import { createQuestion } from "../api";
+import { useStore } from "../store";
 
 interface FormTypes {
   studySubject: string;
@@ -9,12 +11,16 @@ interface FormTypes {
 
 export function Home() {
   const { register, handleSubmit } = useForm<FormTypes>();
+  const { setQuestions } = useStore();
   const navigate = useNavigate();
 
-  const handleFormSubmit: SubmitHandler<FormTypes> = (data) => {
+  const handleFormSubmit: SubmitHandler<FormTypes> = async (data) => {
     console.log(data);
 
-    navigate("/questions/2312321", {});
+    const questions = await createQuestion(data.studySubject);
+    setQuestions(questions);
+
+    navigate("/questions/2312321");
   };
 
   return (
