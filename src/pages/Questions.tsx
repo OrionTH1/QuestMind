@@ -34,7 +34,7 @@ export function Questions() {
   }, [resetCounts]);
 
   const handleNextQuestionClick = () => {
-    if (questionCount === 5) {
+    if (questionCount === 7) {
       navigate("/questions/123/finished");
       return;
     }
@@ -68,7 +68,7 @@ export function Questions() {
             : "border-red"
         )}
       >
-        <p className="mb-4 text-sm ">Questão {questionCount}/5</p>
+        <p className="mb-4 text-sm ">Questão {questionCount}/7</p>
         <h1 className="text-[20px] font-medium mb-9">
           {actualQuestion.question}
         </h1>
@@ -147,7 +147,7 @@ export function Questions() {
               <Button
                 width="10rem"
                 height="3rem"
-                text={questionCount === 5 ? "Finalizar" : "Próximo"}
+                text={questionCount === 7 ? "Finalizar" : "Próximo"}
                 variant="fill"
                 type="button"
                 onClick={handleNextQuestionClick}

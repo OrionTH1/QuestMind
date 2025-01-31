@@ -18,7 +18,7 @@ export function Score() {
   return (
     <div className="min-h-svh flex flex-col items-center justify-center">
       <h1 className="font-medium text-[2.5rem]">
-        Você acertou {correctCount}/5 🎉
+        Você acertou {correctCount}/7 🎉
       </h1>
       <div className="flex gap-x-6">
         <Button
