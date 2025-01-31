@@ -26,6 +26,7 @@ export function Questions() {
     increaseQuestionCount,
     resetStore: resetCounts,
   } = useStore();
+  console.log(questionCount);
   const actualQuestion = questions[questionCount - 1];
   const navigate = useNavigate();
 
@@ -47,7 +48,7 @@ export function Questions() {
   const handleFormSubmit: SubmitHandler<InputTypes> = (data) => {
     if (!data.option) return;
 
-    if (actualQuestion.option[data.option].isCorrect) {
+    if (actualQuestion.options[data.option].isCorrect) {
       setIsAnswerCorrect(true);
       increaseCorrectCount();
       return;
@@ -78,57 +79,57 @@ export function Questions() {
             <div className="flex flex-col gap-y-6 mb-16">
               <Option
                 option={"A"}
-                text={actualQuestion.option.A.text}
-                explicationText={actualQuestion.option.A.explication}
+                text={actualQuestion.options.A.text}
+                explicationText={actualQuestion.options.A.explication}
                 status={
                   isFormSubmitted
-                    ? actualQuestion.option.A.isCorrect
+                    ? actualQuestion.options.A.isCorrect
                     : "waiting"
                 }
                 register={register("option")}
               />
               <Option
                 option={"B"}
-                text={actualQuestion.option.B.text}
-                explicationText={actualQuestion.option.B.explication}
+                text={actualQuestion.options.B.text}
+                explicationText={actualQuestion.options.B.explication}
                 register={register("option")}
                 status={
                   isFormSubmitted
-                    ? actualQuestion.option.B.isCorrect
+                    ? actualQuestion.options.B.isCorrect
                     : "waiting"
                 }
               />
               <Option
                 option={"C"}
-                text={actualQuestion.option.C.text}
-                explicationText={actualQuestion.option.C.explication}
+                text={actualQuestion.options.C.text}
+                explicationText={actualQuestion.options.C.explication}
                 register={register("option")}
                 status={
                   isFormSubmitted
-                    ? actualQuestion.option.C.isCorrect
+                    ? actualQuestion.options.C.isCorrect
                     : "waiting"
                 }
               />
               <Option
                 option={"D"}
-                text={actualQuestion.option.D.text}
-                explicationText={actualQuestion.option.D.explication}
+                text={actualQuestion.options.D.text}
+                explicationText={actualQuestion.options.D.explication}
                 register={register("option")}
                 status={
                   isFormSubmitted
-                    ? actualQuestion.option.D.isCorrect
+                    ? actualQuestion.options.D.isCorrect
                     : "waiting"
                 }
               />
 
               <Option
                 option={"E"}
-                text={actualQuestion.option.E.text}
-                explicationText={actualQuestion.option.E.explication}
+                text={actualQuestion.options.E.text}
+                explicationText={actualQuestion.options.E.explication}
                 register={register("option")}
                 status={
                   isFormSubmitted
-                    ? actualQuestion.option.E.isCorrect
+                    ? actualQuestion.options.E.isCorrect
                     : "waiting"
                 }
               />
