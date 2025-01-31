@@ -1,9 +1,10 @@
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { GoGear } from "react-icons/go";
-import { useNavigate } from "react-router";
 import { createQuestion } from "../api";
 import { useStore } from "../store";
+import { useNavigate } from "react-router";
+import { useState } from "react";
 
 interface FormTypes {
   studySubject: string;
@@ -16,10 +17,14 @@ export function Home() {
   const navigate = useNavigate();
 
   const handleFormSubmit: SubmitHandler<FormTypes> = async (data) => {
-    console.log(data);
-
-    const questions = await createQuestion(data.studySubject);
     setIsLoading(true);
+    const questions = await createQuestion(
+      data.studySubject,
+      "hard",
+      "big",
+      "english"
+    );
+    console.log(questions);
     setQuestions(questions);
 
     setIsLoading(false);
@@ -58,6 +63,8 @@ export function Home() {
               <button type="button" className="absolute left-3">
                 <GoGear color="#000000" />
               </button>
+
+              <button type="submit" className="absolute right-3">
                 <BsFillCaretRightFill size={20} color="#3B82F6" opacity={0.4} />
               </button>
             </div>
