@@ -2,22 +2,25 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { GoGear } from "react-icons/go";
 import { createQuestion } from "../api";
-import { useStore } from "../store";
+import { useSystemStore, useQuestionsStore } from "../store";
 import { useNavigate } from "react-router";
 import { useState } from "react";
+import { Loading } from "../components/Loading";
+import { Config } from "../components/Config";
 
-interface FormTypes {
+interface QuestionFormTypes {
   studySubject: string;
 }
 
 export function Home() {
   const [isLoading, setIsLoading] = useState(false);
-  const { register, handleSubmit } = useForm<FormTypes>();
-  const { setQuestions } = useStore();
   const [isConfigOpened, setIsConfigOpened] = useState(false);
+  const { register, handleSubmit } = useForm<QuestionFormTypes>();
+  useForm<QuestionFormTypes>();
+  const { ammount, difficulty, setQuestions } = useQuestionsStore();
+  const { language, setStudySubject } = useSystemStore();
   const navigate = useNavigate();
 
-  const handleFormSubmit: SubmitHandler<FormTypes> = async (data) => {
   const handleConfigButtonClick = (event: unknown) => {
     setIsConfigOpened((value) => !value);
     console.log(event);
@@ -28,17 +31,19 @@ export function Home() {
   ) => {
     setIsConfigOpened(false);
     setIsLoading(true);
+
     const questions = await createQuestion(
       data.studySubject,
-      "hard",
-      "big",
-      "english"
+      difficulty,
+      ammount,
+      language
     );
     console.log(questions);
     setQuestions(questions);
+    setStudySubject(data.studySubject);
 
     setIsLoading(false);
-    navigate("/questions/2312321");
+    navigate("/questions");
   };
 
   return (
@@ -51,7 +56,10 @@ export function Home() {
             What do you want to study? 📚
           </h1>
 
-          <form className="flex" onSubmit={handleSubmit(handleFormSubmit)}>
+          <form
+            className="flex"
+            onSubmit={handleSubmit(handleSubjectFormSubmit)}
+          >
             <div className="relative flex items-center">
               <input
                 type="text"
