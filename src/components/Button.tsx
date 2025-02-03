@@ -3,7 +3,6 @@ import { twMerge } from "tailwind-merge";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   width?: string;
-  height?: string;
   text: string;
   variant: "outline" | "fill";
   isHidden?: boolean;
@@ -11,7 +10,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function Button({
   width,
-  height,
   text,
   variant,
   isHidden,
@@ -21,11 +19,10 @@ export function Button({
     <button
       {...props}
       className={twMerge(
-        `w-[${width ? width : "12rem"}] h-[${
-          height ? height : "3.5rem"
-        }] p-4 items-center justify-center rounded-[10px]`,
+        `w-[${width ? width : "12rem"}] `,
         variant === "outline" ? "border border-cyan-800" : "bg-cyan-800",
-        isHidden ? "hidden" : "flex"
+        isHidden ? "hidden" : "flex",
+        "p-3 items-center justify-center rounded-[10px] hover:bg-cyan-900 transition"
       )}
     >
       <span
