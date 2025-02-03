@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { QuestionsDifficulty } from "./store";
 
 const genIA = new GoogleGenerativeAI(import.meta.env.VITE_API_KEY);
 const model = genIA.getGenerativeModel({
@@ -39,14 +40,21 @@ export type Questions = Array<{
 
 export const createQuestion = async (
   subject: string,
-  difficulty: "easy" | "medium" | "hard",
-  size: "short" | "medium" | "big",
+  difficulty: QuestionsDifficulty,
+  ammount: number,
   language: string
 ) => {
-  const prompt = `
-  Crie 7 questões com dificuldade ${difficulty} sobre ${subject}, seguindo estas diretrizes:
+  const size =
+    difficulty === "easy"
+      ? "short"
+      : difficulty === "normal"
+      ? "medium"
+      : "big";
 
-  - As questões devem ser criadas na linuguage: ${language}
+  const prompt = `
+  Crie ${ammount} questões com dificuldade ${difficulty} sobre ${subject}, seguindo estas diretrizes:
+
+  - As questões devem ser criadas na linguage: ${language}
   - As questões devem ser de tamanho ${size} e bem elaboradas, no formato de múltipla escolha.
   - Cada questão deve ter 5 alternativas (A a E).
   - Apenas uma alternativa deve estar correta e deve ser indicada com "isCorrect": true.
