@@ -20,6 +20,7 @@ export function Score() {
 
   const handleGenerateNewQuestionsClick = async () => {
     resetCounts();
+    setIsLoading(true);
     if (!studySubject) return;
     const questions = await createQuestion(
       studySubject,
@@ -37,7 +38,9 @@ export function Score() {
     navigate("/");
   };
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <div className="min-h-svh flex flex-col items-center justify-center">
       <h1 className="font-medium text-[2.5rem]">
         Você acertou {correctCount}/{questions.length} 🎉

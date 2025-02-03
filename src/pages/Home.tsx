@@ -50,9 +50,10 @@ export function Home() {
     <div className="h-svh flex flex-col items-center justify-center mt-[-100px] ">
       {isConfigOpened && <Config setIsConfigOpen={setIsConfigOpened} />}
       {isLoading ? (
+        <Loading />
       ) : (
-        <div className="h-svh flex flex-col items-center justify-center mt-[-100px] ">
-          <h1 className="text-[1.75rem] font-medium mb-5">
+        <div className="">
+          <h1 className="text-[1.75rem] text-center font-medium mb-5">
             What do you want to study? 📚
           </h1>
 
