@@ -14,9 +14,19 @@ export function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit } = useForm<FormTypes>();
   const { setQuestions } = useStore();
+  const [isConfigOpened, setIsConfigOpened] = useState(false);
   const navigate = useNavigate();
 
   const handleFormSubmit: SubmitHandler<FormTypes> = async (data) => {
+  const handleConfigButtonClick = (event: unknown) => {
+    setIsConfigOpened((value) => !value);
+    console.log(event);
+  };
+
+  const handleSubjectFormSubmit: SubmitHandler<QuestionFormTypes> = async (
+    data
+  ) => {
+    setIsConfigOpened(false);
     setIsLoading(true);
     const questions = await createQuestion(
       data.studySubject,
@@ -32,16 +42,9 @@ export function Home() {
   };
 
   return (
-    <div>
+    <div className="h-svh flex flex-col items-center justify-center mt-[-100px] ">
+      {isConfigOpened && <Config setIsConfigOpen={setIsConfigOpened} />}
       {isLoading ? (
-        <div className="h-svh flex flex-col items-center justify-center">
-          <div>
-            <h1 className="text-[2.5rem] font-bold">Loading...</h1>
-            <p className="text-[1rem] opacity-50 -mt-3">
-              This might take a while
-            </p>
-          </div>
-        </div>
       ) : (
         <div className="h-svh flex flex-col items-center justify-center mt-[-100px] ">
           <h1 className="text-[1.75rem] font-medium mb-5">
@@ -60,7 +63,11 @@ export function Home() {
             "
               />
 
-              <button type="button" className="absolute left-3">
+              <button
+                type="button"
+                className="absolute left-3"
+                onClick={handleConfigButtonClick}
+              >
                 <GoGear color="#000000" />
               </button>
 
