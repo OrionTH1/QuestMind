@@ -1,10 +1,10 @@
 import { Option } from "../components/Option";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Button } from "../components/Button";
-import { useStore } from "../store";
+import { useQuestionsStore } from "../store";
 
 interface InputTypes {
   option: "A" | "B" | "C" | "D" | "E";
@@ -19,29 +19,20 @@ export function Questions() {
   } = useForm<InputTypes>();
   const isFormSubmitted = formState.isSubmitted;
   const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean>(false);
-  const {
-    questions,
-    questionCount,
-    increaseCorrectCount,
-    increaseQuestionCount,
-    resetStore: resetCounts,
-  } = useStore();
-  console.log(questionCount);
-  const actualQuestion = questions[questionCount - 1];
+  const { questions, actualCount, increaseCorrectCount, increaseActualCount } =
+    useQuestionsStore();
+  console.log(actualCount);
+  const actualQuestion = questions[actualCount - 1];
   const navigate = useNavigate();
 
-  useEffect(() => {
-    resetCounts();
-  }, [resetCounts]);
-
   const handleNextQuestionClick = () => {
-    if (questionCount === 7) {
-      navigate("/questions/123/finished");
+    if (actualCount === questions.length) {
+      navigate("/questions/finished");
       return;
     }
 
     setIsAnswerCorrect(false);
-    increaseQuestionCount();
+    increaseActualCount();
     resetForm();
   };
 
@@ -69,7 +60,9 @@ export function Questions() {
             : "border-red"
         )}
       >
-        <p className="mb-4 text-sm ">Questão {questionCount}/7</p>
+        <p className="mb-4 text-sm ">
+          Questão {actualCount}/{questions.length}
+        </p>
         <h1 className="text-[20px] font-medium mb-9">
           {actualQuestion.question}
         </h1>
@@ -147,8 +140,9 @@ export function Questions() {
 
               <Button
                 width="10rem"
-                height="3rem"
-                text={questionCount === 7 ? "Finalizar" : "Próximo"}
+                text={
+                  actualCount === questions.length ? "Finalizar" : "Próximo"
+                }
                 variant="fill"
                 type="button"
                 onClick={handleNextQuestionClick}
