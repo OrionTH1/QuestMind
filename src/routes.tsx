@@ -7,8 +7,8 @@ export function Routes() {
   return (
     <MyRoutes>
       <Route path="/" element={<Home />} />
-      <Route path="/questions/:id" element={<Questions />} />
-      <Route path="/questions/:id/finished" element={<Score />} />
+      <Route path="/questions" element={<Questions />} />
+      <Route path="/questions/finished" element={<Score />} />
     </MyRoutes>
   );
 }
