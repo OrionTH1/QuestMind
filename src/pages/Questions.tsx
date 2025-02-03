@@ -131,7 +131,6 @@ export function Questions() {
             <div className="flex flex-row-reverse gap-x-6">
               <Button
                 width="10rem"
-                height="3rem"
                 text="Confirmar"
                 variant="fill"
                 type="submit"
