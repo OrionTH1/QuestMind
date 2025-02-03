@@ -1,14 +1,36 @@
 import { useNavigate } from "react-router";
 import { Button } from "../components/Button";
-import { useStore } from "../store";
+import { useQuestionsStore, useSystemStore } from "../store";
+import { createQuestion } from "../api";
+import { useState } from "react";
+import { Loading } from "../components/Loading";
 
 export function Score() {
   const navigate = useNavigate();
-  const { correctCount, resetStore: resetCounts } = useStore();
+  const [isLoading, setIsLoading] = useState(false);
+  const {
+    questions,
+    correctCount,
+    difficulty,
+    ammount,
+    setQuestions,
+    resetCounts,
+  } = useQuestionsStore();
+  const { language, studySubject } = useSystemStore();
 
-  const handleGenerateNewQuestionsClick = () => {
+  const handleGenerateNewQuestionsClick = async () => {
     resetCounts();
-    console.log("generate");
+    if (!studySubject) return;
+    const questions = await createQuestion(
+      studySubject,
+      difficulty,
+      ammount,
+      language
+    );
+    setQuestions(questions);
+
+    setIsLoading(false);
+    navigate("/questions");
   };
   const handleBackToHomeClick = () => {
     resetCounts();
@@ -18,7 +40,7 @@ export function Score() {
   return (
     <div className="min-h-svh flex flex-col items-center justify-center">
       <h1 className="font-medium text-[2.5rem]">
-        Você acertou {correctCount}/7 🎉
+        Você acertou {correctCount}/{questions.length} 🎉
       </h1>
       <div className="flex gap-x-6">
         <Button
