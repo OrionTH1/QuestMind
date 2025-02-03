@@ -58,8 +58,8 @@ export const createQuestion = async (
   - As questões devem ser de tamanho ${size} e bem elaboradas, no formato de múltipla escolha.
   - Cada questão deve ter 5 alternativas (A a E).
   - Apenas uma alternativa deve estar correta e deve ser indicada com "isCorrect": true.
-  - Todas as alternativas devem ser bem elaboradas e equilibradas em qualidade e tamanho. Nenhuma questão deve ter apenas uma ou duas alternativas bem desenvolvidas.
-  - Evite padrões previsíveis: a alternativa correta não deve se repetir frequentemente na mesma posição (por exemplo, 3 respostas corretas sendo sempre a opção E).
+  - Todas as alternativas devem ser bem elaboradas e equilibradas em qualidade e tamanho.
+  - Evite padrões previsíveis: a alternativa correta não deve se repetir na mesma posição (por exemplo, 2 respostas corretas sendo sempre a opção C).
   - Use a chave "isCorrect" para falar se a alternativa está correta ou não
   - Use o seguinte formato JSON: 
 
@@ -99,7 +99,6 @@ export const createQuestion = async (
   const result = await model.generateContent(prompt);
   let text = result.response.text();
   text = text.replace(/```json|```|```javascript|javascript|json/g, "");
-  console.log(text);
 
   const object = JSON.parse(text) as Questions;
 
