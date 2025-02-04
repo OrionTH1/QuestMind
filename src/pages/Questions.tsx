@@ -19,15 +19,21 @@ export function Questions() {
   } = useForm<InputTypes>();
   const isFormSubmitted = formState.isSubmitted;
   const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean>(false);
-  const { questions, actualCount, increaseCorrectCount, increaseActualCount } =
-    useQuestionsStore();
-  console.log(actualCount);
-  const actualQuestion = questions[actualCount - 1];
+  const {
+    questions,
+    actualCount,
+    increaseCorrectCount,
+    increaseActualCount,
+    setIsFinished,
+  } = useQuestionsStore();
   const navigate = useNavigate();
+
+  const actualQuestion = questions[actualCount - 1];
 
   const handleNextQuestionClick = () => {
     if (actualCount === questions.length) {
       navigate("/questions/finished");
+      setIsFinished(true);
       return;
     }
 

@@ -16,7 +16,7 @@ export function Score() {
     difficulty,
     ammount,
     setQuestions,
-    resetCounts,
+    setIsFinished,
   } = useQuestionsStore();
   const { language, studySubject } = useSystemStore();
 
@@ -33,6 +33,7 @@ export function Score() {
     setQuestions(questions);
 
     setIsLoading(false);
+    setIsFinished(false);
     navigate("/questions");
   };
   const handleBackToHomeClick = () => {
