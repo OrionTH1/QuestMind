@@ -20,9 +20,11 @@ export function Button({
       {...props}
       className={twMerge(
         `w-[${width ? width : "12rem"}] `,
-        variant === "outline" ? "border border-cyan-800" : "bg-cyan-800",
+        variant === "outline"
+          ? "border border-cyan-800 hover:bg-slate-50"
+          : "bg-cyan-800 hover:bg-cyan-900",
         isHidden ? "hidden" : "flex",
-        "p-3 items-center justify-center rounded-[10px] hover:bg-cyan-900 transition"
+        "p-3 items-center justify-center rounded-[10px] transition"
       )}
     >
       <span
