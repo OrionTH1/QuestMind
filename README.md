@@ -68,6 +68,7 @@ QuestMing is an innovative and highly personalized study platform powered by Art
 
 * ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 * [![React][React.js]][React-url]
+* ![Zustand](https://img.shields.io/badge/Zustand-000000?style=for-the-badge&logo=tailwind)
 * ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 * ![Tailwind](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
