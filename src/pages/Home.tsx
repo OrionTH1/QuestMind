@@ -2,7 +2,6 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { GoGear } from "react-icons/go";
 import { createQuestion } from "../api";
-import { useSystemStore, useQuestionsStore } from "../store";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import { Loading } from "../components/Loading";

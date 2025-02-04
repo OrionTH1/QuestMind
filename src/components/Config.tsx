@@ -1,12 +1,10 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import {
-  Languages,
-  QuestionsDifficulty,
-  useQuestionsStore,
-  useSystemStore,
-} from "../store";
+
 import { Button } from "./Button";
 import { IoMdClose } from "react-icons/io";
+import { Languages, QuestionsDifficulty } from "../utils/types";
+import { useQuestionsStore } from "../store/questionsStore";
+import { useSystemStore } from "../store/systemStore";
 
 interface ConfigFormTypes {
   questionsSize: number;
@@ -25,7 +23,6 @@ export function Config({
   const { language, setLanguage } = useSystemStore();
 
   const handleConfigFormSubmit: SubmitHandler<ConfigFormTypes> = (data) => {
-    console.log(data);
     setIsConfigOpen(false);
     setDifficulty(data.questionsDifficulty);
     setQuestionsAmmount(data.questionsSize);
