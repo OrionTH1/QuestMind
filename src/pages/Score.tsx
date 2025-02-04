@@ -19,25 +19,27 @@ export function Score() {
     setIsFinished,
   } = useQuestionsStore();
   const { language, studySubject } = useSystemStore();
+  const resetQuestions = useResetQuestions();
 
   const handleGenerateNewQuestionsClick = async () => {
-    resetCounts();
-    setIsLoading(true);
     if (!studySubject) return;
-    const questions = await createQuestion(
+    setIsLoading(true);
+    resetQuestions(false);
+
+    const newQuestions = await createQuestion(
       studySubject,
       difficulty,
       ammount,
       language
     );
-    setQuestions(questions);
+    setQuestions(newQuestions);
 
     setIsLoading(false);
     setIsFinished(false);
     navigate("/questions");
   };
   const handleBackToHomeClick = () => {
-    resetCounts();
+    resetQuestions(true);
     navigate("/");
   };
 
