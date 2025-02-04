@@ -137,7 +137,7 @@ export function Questions() {
             <div className="flex flex-row-reverse gap-x-6">
               <Button
                 width="10rem"
-                text="Confirmar"
+                text="Confirm"
                 variant="fill"
                 type="submit"
                 isHidden={isFormSubmitted}
@@ -145,9 +145,7 @@ export function Questions() {
 
               <Button
                 width="10rem"
-                text={
-                  actualCount === questions.length ? "Finalizar" : "Próximo"
-                }
+                text={actualCount === questions.length ? "Finish" : "Next"}
                 variant="fill"
                 type="button"
                 onClick={handleNextQuestionClick}
@@ -166,8 +164,8 @@ export function Questions() {
               >
                 <span>
                   {isAnswerCorrect === true
-                    ? "Você acertou 🎉"
-                    : "Você errou 😔"}
+                    ? "You got it right🎉"
+                    : "You gor it wrong 😔"}
                 </span>
               </div>
             </div>
