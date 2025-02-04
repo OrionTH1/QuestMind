@@ -24,7 +24,6 @@ export function Home() {
 
   const handleConfigButtonClick = (event: unknown) => {
     setIsConfigOpened((value) => !value);
-    console.log(event);
   };
 
   const handleSubjectFormSubmit: SubmitHandler<QuestionFormTypes> = async (
@@ -39,7 +38,6 @@ export function Home() {
       ammount,
       language
     );
-    console.log(questions);
     setQuestions(questions);
     setStudySubject(data.studySubject);
 
