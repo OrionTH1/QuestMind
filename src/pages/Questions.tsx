@@ -67,7 +67,7 @@ export function Questions() {
         )}
       >
         <p className="mb-4 text-sm ">
-          Questão {actualCount}/{questions.length}
+          Question {actualCount}/{questions.length}
         </p>
         <h1 className="text-[20px] font-medium mb-9">
           {actualQuestion.question}
@@ -164,8 +164,8 @@ export function Questions() {
               >
                 <span>
                   {isAnswerCorrect === true
-                    ? "You got it right🎉"
-                    : "You gor it wrong 😔"}
+                    ? "You got it right 🎉"
+                    : "You got it wrong 😔"}
                 </span>
               </div>
             </div>
