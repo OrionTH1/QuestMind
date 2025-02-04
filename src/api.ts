@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { QuestionsDifficulty } from "./store";
+import { QuestionsDifficulty } from "./utils/types";
 
 const genIA = new GoogleGenerativeAI(import.meta.env.VITE_API_KEY);
 const model = genIA.getGenerativeModel({

@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Button } from "../components/Button";
-import { useQuestionsStore } from "../store";
+import { useQuestionsStore } from "../store/questionsStore";
 
 interface InputTypes {
   option: "A" | "B" | "C" | "D" | "E";

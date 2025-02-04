@@ -7,6 +7,8 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import { Loading } from "../components/Loading";
 import { Config } from "../components/Config";
+import { useQuestionsStore } from "../store/questionsStore";
+import { useSystemStore } from "../store/systemStore";
 
 interface QuestionFormTypes {
   studySubject: string;

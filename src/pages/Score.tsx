@@ -4,6 +4,9 @@ import { useQuestionsStore, useSystemStore } from "../store";
 import { createQuestion } from "../api";
 import { useState } from "react";
 import { Loading } from "../components/Loading";
+import { useResetQuestions } from "../utils/resetQuestions";
+import { useSystemStore } from "../store/systemStore";
+import { useQuestionsStore } from "../store/questionsStore";
 
 export function Score() {
   const navigate = useNavigate();
