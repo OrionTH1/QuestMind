@@ -22,7 +22,7 @@ export function Home() {
   const { language, setStudySubject } = useSystemStore();
   const navigate = useNavigate();
 
-  const handleConfigButtonClick = (event: unknown) => {
+  const handleConfigButtonClick = () => {
     setIsConfigOpened((value) => !value);
   };
 
