@@ -16,7 +16,7 @@
 [![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=todoist&logoColor=white)](https://portfólio.com)
 
   <p align="center">
-    The goal of QuestMind is to provide an efficient and personalized way to study, using Artificial Intelligence to generate relevant questions, offering a dynamic and interactive learning environment.
+    A study platform powered by Artificial Intelligence, where you can choose a subject and automatically generate questions to practice and enhance your knowledge. 
     <br />
     <a href="https://github.com/github_username/repo_name"><strong>View Demo »</strong></a>
     <br />
@@ -56,7 +56,7 @@
 
 
 
-StudyAI is an innovative and highly personalized learning platform powered by Artificial Intelligence. It allows students to easily choose a subject of interest, and then automatically generates personalized questions tailored to each student's knowledge level. The platform offers a dynamic environment where student can practice continuously, improve their understanding, and reinforce key concepts in an efficient and interactive way.
+QuestMing is an innovative and highly personalized study platform powered by Artificial Intelligence. It allows students to easily choose a subject of interest, and then automatically generates personalized questions tailored to each student's knowledge level. The platform offers a dynamic environment where student can practice continuously, improve their understanding, and reinforce key concepts in an efficient and interactive way.
 
 [![Product Name Screen Shot][product-screenshot]](https://questmind-project.vercel.app/)
 
