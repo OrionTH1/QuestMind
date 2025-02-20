@@ -18,7 +18,7 @@
   <p align="center">
     A study platform powered by Artificial Intelligence, where you can choose a subject and automatically generate questions to practice and enhance your knowledge. 
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>View Demo »</strong></a>
+    <a href="https://questmind-project.vercel.app/"><strong>View Demo »</strong></a>
     <br />
     <br />
   </p>
